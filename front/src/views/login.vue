@@ -60,7 +60,7 @@
 
 <script>
     import http from "../libs/http";
-    import api from '@/api';
+    import api from '../api';
     import Auth from "../libs/auth";
 
     export default {
