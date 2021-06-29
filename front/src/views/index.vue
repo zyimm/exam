@@ -95,7 +95,7 @@
             },
 
             async errorResult() {
-                let res = await this.$http.get('https://keep-portal.kuaizaixuetang.com/wx-java-api/double-11-activity-info?product_id=test');
+                console.log(12);
             }
         }
     }

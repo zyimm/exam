@@ -1,20 +1,24 @@
-# view-ui-project
+# exam-front
 
-This project is build for Vue.js 2 + vue-router + webpack2 + View UI (iView) 4, just install and run.
-
-## Install
-```bush
-// install dependencies
+## Project setup
+```
 npm install
 ```
-## Run
-### Development
-```bush
-// For the first time, run init to create index.html
-npm run init
-npm run dev
+
+### Compiles and hot-reloads for development
 ```
-### Production(Build)
-```bush
+npm run serve
+```
+
+### Compiles and minifies for production
+```
 npm run build
 ```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
