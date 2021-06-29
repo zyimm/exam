@@ -102,7 +102,6 @@
         },
         methods: {
             collapsedSider() {
-                //console.log(this.$refs.headerLayer.offsetWidth + 'px');
                 this.$refs.side.toggleCollapse();
                 if(this.isCollapsed){
                     this.headerStyle.left =  this.collapsedWidth + 'px';
