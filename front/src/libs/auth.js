@@ -13,7 +13,9 @@ class Auth {
     cookieExpires = 1;
 
     constructor(cookieExpires) {
-        this.cookieExpires = cookieExpires;
+        if(cookieExpires){
+            this.cookieExpires = cookieExpires;
+        }
     }
 
     getToken = () => {
@@ -71,4 +73,4 @@ class Auth {
 
 }
 
-export default Auth;
+export default new Auth();

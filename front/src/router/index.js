@@ -1,13 +1,13 @@
-import Vue from 'vue'
+
 import VueRouter from 'vue-router'
 import index from '../views/index'
 import login from "../views/login"
 import ViewUI from 'view-design'
 import Store from '../store'
-import Auth from "../libs/auth";
+import Auth from '../libs/auth'
 
-Vue.use(ViewUI);
-Vue.use(VueRouter)
+// Vue.use(ViewUI);
+// Vue.use(VueRouter)
 
 const LOGIN_PAGE_NAME = 'login';
 
@@ -62,7 +62,7 @@ const getCrumb = function (path, route) {
 
 router.beforeEach((to, from, next) => {
     ViewUI.LoadingBar.start();
-    const User = new Auth();
+    const User = Auth;
     const token = User.getToken();
     console.log(token);
     if (!token && to.name !== LOGIN_PAGE_NAME) {

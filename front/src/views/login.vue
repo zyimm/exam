@@ -59,8 +59,7 @@
 </template>
 
 <script>
-    import api from '../api';
-    import Auth from "../libs/auth";
+
 
     export default {
         data() {
@@ -98,10 +97,10 @@
                             content: '正在登陆中...',
                             duration: 1
                         })
-                        await _that.$http.post(api.userLogin, _that.form);
+                        await _that.$http.post(_that.$api.userLogin, _that.form);
                         if(_that.$http.isSuccess){
                             let result = _that.$http.responseData;
-                            let user = new Auth();
+                            let user = _that.$auth;
                             user.setToken(result.access_token);
                             user.setUserInfo(result.user);
                             _that.$router.push({path: '/'})

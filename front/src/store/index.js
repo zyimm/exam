@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Auth from "../libs/auth";
+import Auth from '../libs/auth'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+
 
 export default new Vuex.Store({
     state: {
@@ -17,8 +19,9 @@ export default new Vuex.Store({
         setUserInfo(state, data = {}) {
             state.userInfo = data;
         },
-        async loginOut(state, data = {}) {
-            let User = new Auth();
+        async loginOut(state) {
+            let User = Auth;
+            console.log(this,User)
             await  User.loginOut();
             state.userInfo = {}
         },

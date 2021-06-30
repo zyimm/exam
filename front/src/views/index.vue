@@ -69,7 +69,7 @@
 </template>
 <script>
     import menu from "@/store/menu";
-    import Auth from "@/libs/auth";
+
 
     export default {
         name: "index",
@@ -129,7 +129,7 @@
             }
         },
         beforeCreate() {
-            this.$store.commit('setUserInfo', (new Auth()).getUserInfo());
+            this.$store.commit('setUserInfo', this.$auth.getUserInfo());
         },
         watch: {}
     }
