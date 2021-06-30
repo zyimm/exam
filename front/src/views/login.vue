@@ -59,7 +59,6 @@
 </template>
 
 <script>
-    import http from "../libs/http";
     import api from '../api';
     import Auth from "../libs/auth";
 
@@ -79,8 +78,7 @@
                     {
                         required: true, message: '密码不能为空', trigger: 'blur'
                     }
-                ],
-                response: http
+                ]
             }
         },
         computed: {
@@ -100,9 +98,9 @@
                             content: '正在登陆中...',
                             duration: 1
                         })
-                        await _that.response.post(api.userLogin, _that.form);
-                        if(_that.response.isSuccess){
-                            let result = _that.response.responseData;
+                        await _that.$http.post(api.userLogin, _that.form);
+                        if(_that.$http.isSuccess){
+                            let result = _that.$http.responseData;
                             let user = new Auth();
                             user.setToken(result.access_token);
                             user.setUserInfo(result.user);

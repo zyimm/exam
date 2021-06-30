@@ -23,6 +23,7 @@
 
 .menu-icon {
     transition: all .3s;
+    cursor: pointer;
 }
 
 .rotate-icon {
@@ -65,8 +66,26 @@
 .sys-logo {
     padding: 10px;
     color: #fff;
-    font-size: 20px;
+    font-size: 25px;
 }
+.sys-logo div{
+    display: none;
+}
+
+.sys-logo-transition{
+    transform:scale(0.6,0.6);
+    transition:transform ease .2s;
+
+}
+
+.sys-logo-transition div{
+   display: block;
+}
+
+.sys-logo-transition > strong{
+    display:none;
+ }
+
 
 .sys-logo-red {
     color: red;

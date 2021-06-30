@@ -6,9 +6,14 @@
             <Sider ref="side" hide-trigger collapsible :collapsed-width="collapsedWidth"
                    v-model="isCollapsed"
                    :style="{position:'fixed',height: '100vh', left: 0, overflow: 'auto'}">
-                <div class="sys-logo">
-                    <strong class="sys-logo-red">Im.</strong>
-                    <strong class="sys-logo-blue">Host</strong>
+                <div :class="sysLogo">
+                    <strong class="sys-logo-red">Exam.</strong>
+                    <strong class="sys-logo-blue">Capsule</strong>
+
+                   <div> 
+                        <strong class="sys-logo-red">Exam</strong>
+                    </div>
+
                 </div>
                 <Menu theme="dark" width="auto" :class="menuitemClasses">
                     <MenuItem v-for="(menu,menuIndex) in menuList" :key="menuIndex" :name=menu.name :to=menu.to>
@@ -54,12 +59,12 @@
                     </Row>
                 </Header>
 
-                <Content class="sys-content">
+                <div class="sys-content">
                     <router-view/>
-                </Content>
+                </div>
             </Layout>
         </Layout>
-        <Footer class="layout-footer-center">@copyRight https://www.zyimm.com 2013~2020</Footer>
+        <Footer class="layout-footer-center"><strong>@CopyRight</strong> https://www.zyimm.com 2013~2021</Footer>
     </div>
 </template>
 <script>
@@ -90,6 +95,12 @@
                     this.isCollapsed ? 'collapsed-menu' : ''
                 ]
             },
+            sysLogo(){
+                return [
+                    'sys-logo',
+                    this.isCollapsed ? 'sys-logo-transition' : ''
+                ];
+            },
             menuList() {
                 return menu;
             },
@@ -118,7 +129,6 @@
             }
         },
         beforeCreate() {
-            //this.$refs.headerLayer.offsetWidth+'px'
             this.$store.commit('setUserInfo', (new Auth()).getUserInfo());
         },
         watch: {}
