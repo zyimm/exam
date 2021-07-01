@@ -152,7 +152,6 @@
 .ivu-layout-header {
     height: 58px;
     line-height: 58px;
-    overflow-y: hidden;
 }
 
 .ivu-layout-header > .ivu-row{

@@ -60,7 +60,7 @@
                 <Content>
                     <div class="sys-content ivu-layout-content">
                         <div class="tag-nav-wrapper">
-                            <tags-nav :value="$route"  :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
+                            <tags-nav :value="$route"  @input="handleClick" :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
                         </div>
 
                         <div class="content-wrapper"><router-view/></div>
@@ -175,7 +175,11 @@
                     params,
                     query
                 })
+            },
+            handleClick:function (item) {
+                this.turnToPage(item)
             }
+
         },
         beforeCreate() {
             this.$store.commit('setUserInfo', this.$auth.getUserInfo());
