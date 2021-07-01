@@ -92,9 +92,10 @@
 }
 
 .sys-content {
-    margin-top: 70px;
+    margin-top: 58px;
     background: #fff;
-    min-height: 580px;
+    height: 100%;
+    overflow: hidden;
     padding: 8px;
 }
 
@@ -104,6 +105,7 @@
 
 .side-left {
     margin-left: 200px;
+    height: 100%;
 }
 
 .side-left-act {
@@ -126,4 +128,33 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+}
+
+.tag-nav-wrapper{
+    padding: 0;
+    height: 40px;
+    background: #f0f0f0;
+}
+
+.content-wrapper{
+    height: calc(100% - 60px);
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.layout-footer {
+    position: fixed;
+    bottom: 0;
+
+}
+
+
+.ivu-layout-header {
+    height: 58px;
+    line-height: 58px;
+    overflow-y: hidden;
+}
+
+.ivu-layout-header > .ivu-row{
+    height: 100%;
 }

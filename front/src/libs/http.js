@@ -18,7 +18,7 @@ const http = {
     getAccessToken: function () {
 
         if (!store.state.token) {
-            (new Auth()).getToken();
+            Auth.getToken();
         }
         return store.state.token;
     },
@@ -62,7 +62,7 @@ const http = {
             params,
             headers: {'Authorization': 'Bearer ' + this.getAccessToken()}
         }).catch(e => {
-            throw new Error('网络异常')
+            throw new Error('网络异常:'+e.getMessage())
         }).then(res => {
             console.log('请求返回:', res);
             this.handleResponse(res.data);
@@ -74,7 +74,7 @@ const http = {
             this.isSuccess = false;
             ViewUI.Message.error(response.error_msg);
             if (response.error_code === 302) {
-                (new UserObject()).removeCookie();
+                Auth.removeCookie();
                 router.push({
                     path: 'login'
                 });

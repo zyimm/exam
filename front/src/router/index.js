@@ -15,15 +15,49 @@ const routes = [
     {
         path: '/',
         name: '/',
+        redirect: '/personal-space',
         component: index,
         children: [
-            //{path: '/dashboard', component: Dashboard},
-            // {
-            //     path: '/upload',
-            //     name: 'upload',
-            //     title: "图片上传",
-            //     component: () => import('../views/Upload')
-            // },
+
+            {
+                path: '/personal-space',
+                name: 'personal-space',
+                title: "个人空间",
+                meta:{
+                    title:'个人空间'
+                },
+                component: () => import('../views/personal')
+            },
+
+            {
+                path: '/exam-capsule',
+                name: 'exam-capsule',
+                title: "题库管理",
+                meta:{
+                    title:'题库管理'
+                },
+                component: () => import('../views/examCapsule')
+            },
+
+            {
+                path: '/exam-manage',
+                name: 'exam-manage',
+                title: "考试管理",
+                meta:{
+                    title:'考试管理'
+                },
+                component: () => import('../views/examManage')
+            },
+
+            {
+                path: '/user-manage',
+                name: 'user-manage',
+                title: "用户管理",
+                meta:{
+                    title:'用户管理'
+                },
+                component: () => import('../views/users')
+            },
 
         ]
     },
@@ -64,7 +98,6 @@ router.beforeEach((to, from, next) => {
     ViewUI.LoadingBar.start();
     const User = Auth;
     const token = User.getToken();
-    console.log(token);
     if (!token && to.name !== LOGIN_PAGE_NAME) {
         // 未登录且要跳转的页面不是登录页
         next({
@@ -85,7 +118,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(route => {
-    console.log(route);
+    console.log(route.name);
     ViewUI.LoadingBar.finish();
 });
 

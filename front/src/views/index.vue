@@ -9,13 +9,12 @@
                 <div :class="sysLogo">
                     <strong class="sys-logo-red">Exam.</strong>
                     <strong class="sys-logo-blue">Capsule</strong>
-
                    <div> 
                         <strong class="sys-logo-red">Exam</strong>
                     </div>
 
                 </div>
-                <Menu theme="dark" width="auto" :class="menuitemClasses">
+                <Menu theme="dark" width="auto" :class="menuitemClasses" :active-name=activeMenu >
                     <MenuItem v-for="(menu,menuIndex) in menuList" :key="menuIndex" :name=menu.name :to=menu.to>
                         <Icon :type="menu.icon"/>
                         <span>{{menu.title}}</span>
@@ -58,10 +57,17 @@
                         </Col>
                     </Row>
                 </Header>
+                <Content>
+                    <div class="sys-content ivu-layout-content">
+                        <div class="tag-nav-wrapper">
+                            <tags-nav :value="$route"  :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
+                        </div>
 
-                <div class="sys-content">
-                    <router-view/>
-                </div>
+                        <div class="content-wrapper"><router-view/></div>
+
+                    </div>
+                </Content>
+
             </Layout>
         </Layout>
         <Footer class="layout-footer-center"><strong>@CopyRight</strong> https://www.zyimm.com 2013~2021</Footer>
@@ -69,14 +75,20 @@
 </template>
 <script>
     import menu from "@/store/menu";
-
+    import TagsNav from '@/components/tags-nav'
+    import { mapMutations} from 'vuex'
+    import { routeEqual } from '@/libs/util'
 
     export default {
         name: "index",
+        components: {
+            TagsNav
+        },
         data() {
             return {
                 isCollapsed: false,
-                collapsedWidth: 78
+                collapsedWidth: 78,
+                activeMenu:this.$route.name
             }
         },
         computed: {
@@ -112,6 +124,12 @@
             }
         },
         methods: {
+            ...mapMutations([
+                'addTag',
+                'closeTag',
+                'setTagNavList'
+
+            ]),
             collapsedSider() {
                 this.$refs.side.toggleCollapse();
                 if(this.isCollapsed){
@@ -126,11 +144,54 @@
                 this.$router.push({
                     path: '/login'
                 });
+            },
+            handleCloseTag (res, type, route) {
+                if (type !== 'others') {
+                    if (type === 'all') {
+                        this.turnToPage(this.$config.homeName)
+                    } else {
+                        if (routeEqual(this.$route, route)) {
+                            this.closeTag(route)
+                        }
+                    }
+                }
+                this.setTagNavList(res)
+            },
+            turnToPage (route) {
+                let { name, params, query } = {}
+                if (typeof route === 'string') {
+                    name = route
+                } else {
+                    name = route.name
+                    params = route.params
+                    query = route.query
+                }
+                if (name.indexOf('isTurnByHref_') > -1) {
+                    window.open(name.split('_')[1])
+                    return
+                }
+                this.$router.push({
+                    name,
+                    params,
+                    query
+                })
             }
         },
         beforeCreate() {
             this.$store.commit('setUserInfo', this.$auth.getUserInfo());
+            //初始化tag nav
+            this.$store.commit('getTagNavList');
+
         },
-        watch: {}
+        watch: {
+            '$route' (newRoute) {
+                const { name, query, params, meta } = newRoute
+                this.addTag({
+                    route: { name, query, params, meta },
+                    type: 'push'
+                })
+                this.activeMenu = this.$route.name
+            }
+        }
     }
 </script>

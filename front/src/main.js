@@ -10,6 +10,7 @@ import store from './store';
 
 import Api from './api';
 import Auth from './libs/auth';
+import Config from './config'
 
 
 Vue.use(VueRouter);
@@ -22,6 +23,8 @@ Vue.prototype.$http = http;
 Vue.prototype.$api = Api;
 
 Vue.prototype.$auth = Auth;
+
+Vue.prototype.$config = Config;
 
 new Vue({
     router,

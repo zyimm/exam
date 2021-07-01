@@ -1,32 +1,31 @@
 const menu =
     [
         {
-            "name": "1-0",
-            "to": "/upload",
+            "name": "personal-space",
+            "to": "/personal-space",
             "icon": "ios-cloud-upload",
             "title": "个人空间"
 
         },
         {
-            "name": "1-1",
-            "to": "/category-list",
+            "name": "exam-capsule",
+            "to": "/exam-capsule",
             "icon": "ios-list-box",
             "title": "题库管理"
 
         },
         {
-            "name": "1-2",
-            "to": "/image-list",
-            "icon": "ios-image",
+            "name": "exam-manage",
+            "to": "/exam-manage",
+            "icon": "ios-keypad",
             "title": "考试管理"
 
         },
         {
-            "name": "1-3",
-            "to": "user-list",
-            "icon": "md-body",
+            "name": "user-manage",
+            "to": "/user-manage",
+            "icon": "md-contacts",
             "title": "用户列表"
-
         }
     ];
 
