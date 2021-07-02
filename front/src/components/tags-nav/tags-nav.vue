@@ -31,7 +31,6 @@
                             type="dot"
                             v-for="(item, index) in list"
                             ref="tagsPageOpened"
-
                             :key="`tag-nav-${index}`"
                             :name="item.title"
                             :data-route-item="item"

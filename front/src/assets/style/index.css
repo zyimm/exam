@@ -1,3 +1,4 @@
+
 .layout {
     border: 1px solid #d7dde4;
     background: #f5f7f9;
@@ -91,13 +92,7 @@
     color: red;
 }
 
-.sys-content {
-    margin-top: 58px;
-    background: #fff;
-    height: 100%;
-    overflow: hidden;
-    padding: 8px;
-}
+
 
 .ivu-layout-header {
     padding: 0;
@@ -106,6 +101,7 @@
 .side-left {
     margin-left: 200px;
     height: 100%;
+    overflow: hidden !important;
 }
 
 .side-left-act {
@@ -114,20 +110,36 @@
 }
 
 .header-style {
-    z-index: 1000;
-    position: fixed;
-    right: 0;
-    left: 200px
+
 }
 
 .header-style-act {
     left: 78px;
     transition: all .4s;
 }
+
+.full-screen, .user-avatar, .user-notifications{
+    float: right;
+    margin-right: 10px;
+}
+.user-notifications{
+    font-size: 28px;
+    cursor: pointer;
+}
+.user-notifications-badge  > sup{
+    top: 14px;
+    right: -4px;
+}
+
+
 .user-name{
     overflow: hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    margin-right: 10px;
+    float: right;
+    font-size: 18px;
+
 }
 
 .tag-nav-wrapper{
@@ -137,9 +149,14 @@
 }
 
 .content-wrapper{
-    height: calc(100% - 60px);
-    min-height: 500px;
+
     overflow: hidden;
+}
+
+.sys-content {
+    height: calc(100% - 80px);
+    padding: 8px;
+    overflow: auto;
 }
 
 .layout-footer {
@@ -147,7 +164,6 @@
     bottom: 0;
 
 }
-
 
 .ivu-layout-header {
     height: 58px;

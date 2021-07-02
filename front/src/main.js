@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import router from './router';
 import App from './app.vue';
 import 'view-design/dist/styles/iview.css';
+import './assets/style/base.css';
 import animated from 'animate.css';
 import http from './libs/http';
 import store from './store';

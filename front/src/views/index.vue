@@ -21,14 +21,14 @@
                     </MenuItem>
                 </Menu>
             </Sider>
-            <Layout ref="side-right" :class="sideClass">
-                <Header class="layout-header-bar" :class="headerStyle">
+            <Layout ref="sideRight" :class="sideClass">
+                <Header class="layout-header-bar" :class="headerStyle" ref="layoutHeaderBar">
                     <Row>
                         <Col span="1">
                             <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}"
                                   type="md-menu" size="24"></Icon>
                         </Col>
-                        <Col span="19">
+                        <Col span="18">
                             <Breadcrumb>
                                 <BreadcrumbItem v-for="(item,index) in this.$store.state.crumb" :key="index"
                                                 :to="item.path">
@@ -36,59 +36,67 @@
                                 </BreadcrumbItem>
                             </Breadcrumb>
                         </Col>
-                        <Col span="4">
-                            <Row>
-                                <Col span="6" offset="8">
-                                    <Avatar icon="ios-person" :src="this.$store.state.userInfo.avatar"
-                                            size="large"/>
-                                </Col>
-                                <Col span="10">
-                                    <Dropdown class="user-name">
-                                        <a href="javascript:void(0)" >
-                                            {{this.$store.state.userInfo.name}}
-                                            <Icon type="ios-arrow-down"></Icon>
-                                        </a>
-                                        <DropdownMenu slot="list">
-                                            <DropdownItem @click.native="signOut">退出登录</DropdownItem>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </Col>
-                            </Row>
+                        <Col span="5" style="position: relative">
+                            <div class="user-name">
+                                <Dropdown>
+                                    <a href="javascript:void(0)" >
+                                        {{this.$store.state.userInfo.name}}
+                                        <Icon type="ios-arrow-down"></Icon>
+                                    </a>
+                                    <DropdownMenu slot="list">
+                                        <DropdownItem @click.native="signOut">退出登录</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </div>
+                            <div class="user-notifications">
+                                <Badge dot class= "user-notifications-badge">
+                                    <Icon type="md-notifications-outline" />
+                                </Badge>
+
+                            </div>
+                            <div class="user-avatar">
+                                <Avatar icon="ios-person" :src="this.$store.state.userInfo.avatar"
+                                        size="large"/>
+                            </div>
+                            <div class="full-screen">
+                                <full-screen v-model="isFullscreen" />
+                            </div>
                         </Col>
                     </Row>
                 </Header>
-                <Content>
-                    <div class="sys-content ivu-layout-content">
-                        <div class="tag-nav-wrapper">
-                            <tags-nav :value="$route"  @input="handleClick" :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
-                        </div>
-
-                        <div class="content-wrapper"><router-view/></div>
-
-                    </div>
+                <div class="tag-nav-wrapper" >
+                    <tags-nav :value="$route"  @input="handleClick" :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
+                    <div class="clear-fix"></div>
+                </div>
+                <Content class="content-wrapper ivu-layout-content sys-content">
+                    <router-view/>
                 </Content>
-
             </Layout>
         </Layout>
-        <Footer class="layout-footer-center"><strong>@CopyRight</strong> https://www.zyimm.com 2013~2021</Footer>
     </div>
 </template>
 <script>
     import menu from "@/store/menu";
     import TagsNav from '@/components/tags-nav'
+    import FullScreen from '@/components/full-screen'
     import { mapMutations} from 'vuex'
     import { routeEqual } from '@/libs/util'
 
     export default {
         name: "index",
         components: {
-            TagsNav
+            TagsNav,
+            FullScreen
         },
         data() {
             return {
                 isCollapsed: false,
                 collapsedWidth: 78,
-                activeMenu:this.$route.name
+                activeMenu:this.$route.name,
+                isFullscreen: false,
+                tagNavWrapper:{
+                    marginTop:"58px"
+                }
             }
         },
         computed: {
@@ -122,6 +130,7 @@
                     this.isCollapsed ? 'header-style-act' : ''
                 ];
             }
+
         },
         methods: {
             ...mapMutations([
@@ -178,7 +187,15 @@
             },
             handleClick:function (item) {
                 this.turnToPage(item)
+            },
+            fixedSideRightHeight:function () {
+                let height = this.$refs.sideRight.$el.offsetHeight ;
+
+                let bodyHeight = document.body.clientHeight;
+                this.$refs.sideRight.$el.style.height = bodyHeight+'px'
+                console.log(bodyHeight,height)
             }
+
 
         },
         beforeCreate() {
@@ -196,6 +213,11 @@
                 })
                 this.activeMenu = this.$route.name
             }
+        },
+        mounted (){
+            this.$nextTick(()=>{ // 页面渲染完成后的回调
+                this.fixedSideRightHeight()
+            })
         }
     }
 </script>
