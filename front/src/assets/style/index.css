@@ -126,9 +126,10 @@
     font-size: 28px;
     cursor: pointer;
 }
+
 .user-notifications-badge  > sup{
-    top: 14px;
-    right: -4px;
+    top: 12px;
+    right: 0px;
 }
 
 

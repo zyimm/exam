@@ -36,7 +36,7 @@
                                 </BreadcrumbItem>
                             </Breadcrumb>
                         </Col>
-                        <Col span="5" style="position: relative">
+                        <Col span="5" >
                             <div class="user-name">
                                 <Dropdown>
                                     <a href="javascript:void(0)" >
@@ -49,8 +49,9 @@
                                 </Dropdown>
                             </div>
                             <div class="user-notifications">
-                                <Badge dot class= "user-notifications-badge">
-                                    <Icon type="md-notifications-outline" />
+                                <Badge class= "user-notifications-badge">
+                                    <Icon class ="user-notifications-badge-icon" type="md-notifications-outline" />
+                                    <sup class="ivu-badge-dot"></sup>
                                 </Badge>
 
                             </div>
