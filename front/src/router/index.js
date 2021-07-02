@@ -24,7 +24,8 @@ const routes = [
                 name: 'personal-space',
                 title: "个人空间",
                 meta:{
-                    title:'个人空间'
+                    title:'个人空间',
+                    keepAlive: true
                 },
                 component: () => import('../views/personal')
             },
@@ -34,7 +35,8 @@ const routes = [
                 name: 'exam-capsule',
                 title: "题库管理",
                 meta:{
-                    title:'题库管理'
+                    title:'题库管理',
+                    keepAlive: true
                 },
                 component: () => import('../views/examCapsule')
             },
@@ -44,7 +46,8 @@ const routes = [
                 name: 'exam-manage',
                 title: "考试管理",
                 meta:{
-                    title:'考试管理'
+                    title:'考试管理',
+                    keepAlive: true
                 },
                 component: () => import('../views/examManage')
             },
@@ -54,7 +57,8 @@ const routes = [
                 name: 'user-manage',
                 title: "用户管理",
                 meta:{
-                    title:'用户管理'
+                    title:'用户管理',
+                    keepAlive: true
                 },
                 component: () => import('../views/users')
             },
@@ -118,8 +122,8 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(route => {
-    console.log(route.name);
     ViewUI.LoadingBar.finish();
+    return route;
 });
 
 

@@ -1,6 +1,8 @@
 <template>
     <div>
         {{ name }}
+
+        <input type="text" value="" :model="val">
     </div>
 </template>
 
@@ -9,7 +11,8 @@
         name: "personal",
         data(){
             return {
-                name:"personal"
+                name:"personal",
+                val:12
             }
         }
     }

@@ -70,7 +70,11 @@
                     <div class="clear-fix"></div>
                 </div>
                 <Content class="content-wrapper ivu-layout-content sys-content">
-                    <router-view/>
+                    <keep-alive>
+                        <router-view v-if="$route.meta.keepAlive"></router-view>
+                    </keep-alive>
+                    <router-view v-if="!$route.meta.keepAlive"></router-view>
+
                 </Content>
             </Layout>
         </Layout>
@@ -80,11 +84,11 @@
     import menu from "@/store/menu";
     import TagsNav from '@/components/tags-nav'
     import FullScreen from '@/components/full-screen'
-    import { mapMutations} from 'vuex'
+    import { mapMutations } from 'vuex'
     import { routeEqual } from '@/libs/util'
 
     export default {
-        name: "index",
+        name: "personal-space",
         components: {
             TagsNav,
             FullScreen
@@ -190,11 +194,8 @@
                 this.turnToPage(item)
             },
             fixedSideRightHeight:function () {
-                let height = this.$refs.sideRight.$el.offsetHeight ;
-
                 let bodyHeight = document.body.clientHeight;
                 this.$refs.sideRight.$el.style.height = bodyHeight+'px'
-                console.log(bodyHeight,height)
             }
 
 
