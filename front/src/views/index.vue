@@ -184,11 +184,14 @@
                     window.open(name.split('_')[1])
                     return
                 }
-                this.$router.push({
-                    name,
-                    params,
-                    query
-                })
+                if(this.$route.name !=  name){
+                    this.$router.push({
+                        name,
+                        params,
+                        query
+                    })
+                }
+
             },
             handleClick:function (item) {
                 this.turnToPage(item)

@@ -12,15 +12,14 @@ const closePage = (state, route) => {
     state.tagNavList = state.tagNavList.filter(item => {
         return !routeEqual(item, route)
     })
-    console.log(Object.keys(nextRoute).length === 0)
+
     if(Object.keys(nextRoute).length > 0){
         router.push(nextRoute)
     }else{
         router.push({
             path:'/'
-        })
+        });
     }
-
 }
 
 
