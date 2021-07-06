@@ -63,8 +63,7 @@ export default new Vuex.Store({
             setTagNavListInLocalstorage(state.tagNavList);
         },
         closeTag:function(state, route){
-            let tags = state.tagNavList.filter(item => routeEqual(item, route))
-            console.log(route, tags.length)
+            state.tagNavList.filter(item => routeEqual(item, route))
             closePage(state, route)
         },
         getTagNavList:function(state){
