@@ -45,6 +45,17 @@ const http = {
     },
 
     /**
+     * patch
+     *
+     * @param api
+     * @param data
+     * @returns {http}
+     */
+    patch: function (api, data = {}) {
+        return this.request(this.getUrl(api), 'patch', data);
+    },
+
+    /**
      *
      * @param url
      * @param method
@@ -62,6 +73,7 @@ const http = {
             params,
             headers: {'Authorization': 'Bearer ' + this.getAccessToken()}
         }).catch(e => {
+            console.log(e);
             throw new Error('网络异常:'+e.getMessage())
         }).then(res => {
             console.log('请求返回:', res);
