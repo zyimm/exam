@@ -9,12 +9,12 @@
                 <div :class="sysLogo">
                     <strong class="sys-logo-red">Exam.</strong>
                     <strong class="sys-logo-blue">Capsule</strong>
-                   <div> 
+                    <div>
                         <strong class="sys-logo-red">Exam</strong>
                     </div>
 
                 </div>
-                <Menu theme="dark" width="auto" :class="menuitemClasses" :active-name=activeMenu >
+                <Menu theme="dark" width="auto" :class="menuitemClasses" :active-name=activeMenu>
                     <MenuItem v-for="(menu,menuIndex) in menuList" :key="menuIndex" :name=menu.name :to=menu.to>
                         <Icon :type="menu.icon"/>
                         <span>{{menu.title}}</span>
@@ -36,10 +36,10 @@
                                 </BreadcrumbItem>
                             </Breadcrumb>
                         </Col>
-                        <Col span="5" >
+                        <Col span="5">
                             <div class="user-name">
                                 <Dropdown>
-                                    <a href="javascript:void(0)" >
+                                    <a href="javascript:void(0)">
                                         {{this.$store.state.userInfo.name}}
                                         <Icon type="ios-arrow-down"></Icon>
                                     </a>
@@ -49,8 +49,8 @@
                                 </Dropdown>
                             </div>
                             <div class="user-notifications">
-                                <Badge class= "user-notifications-badge">
-                                    <Icon class ="user-notifications-badge-icon" type="md-notifications-outline" />
+                                <Badge class="user-notifications-badge">
+                                    <Icon class="user-notifications-badge-icon" type="md-notifications-outline"/>
                                     <sup class="ivu-badge-dot"></sup>
                                 </Badge>
 
@@ -60,13 +60,14 @@
                                         size="large"/>
                             </div>
                             <div class="full-screen">
-                                <full-screen v-model="isFullscreen" />
+                                <full-screen v-model="isFullscreen"/>
                             </div>
                         </Col>
                     </Row>
                 </Header>
-                <div class="tag-nav-wrapper" >
-                    <tags-nav :value="$route"  @input="handleClick" :list="this.$store.state.tagNavList" @on-close="handleCloseTag"/>
+                <div class="tag-nav-wrapper">
+                    <tags-nav :value="$route" @input="handleClick" :list="this.$store.state.tagNavList"
+                              @on-close="handleCloseTag"/>
                     <div class="clear-fix"></div>
                 </div>
                 <Content class="content-wrapper ivu-layout-content sys-content">
@@ -84,8 +85,8 @@
     import menu from "@/store/menu";
     import TagsNav from '@/components/tags-nav'
     import FullScreen from '@/components/full-screen'
-    import { mapMutations } from 'vuex'
-    import { routeEqual } from '@/libs/util'
+    import {mapMutations} from 'vuex'
+    import {routeEqual} from '@/libs/util'
 
     export default {
         name: "personal-space",
@@ -97,10 +98,10 @@
             return {
                 isCollapsed: false,
                 collapsedWidth: 78,
-                activeMenu:this.$route.name,
+                activeMenu: this.$route.name,
                 isFullscreen: false,
-                tagNavWrapper:{
-                    marginTop:"58px"
+                tagNavWrapper: {
+                    marginTop: "58px"
                 }
             }
         },
@@ -120,7 +121,7 @@
                     this.isCollapsed ? 'collapsed-menu' : ''
                 ]
             },
-            sysLogo(){
+            sysLogo() {
                 return [
                     'sys-logo',
                     this.isCollapsed ? 'sys-logo-transition' : ''
@@ -129,7 +130,7 @@
             menuList() {
                 return menu;
             },
-            headerStyle(){
+            headerStyle() {
                 return [
                     'header-style',
                     this.isCollapsed ? 'header-style-act' : ''
@@ -146,20 +147,17 @@
             ]),
             collapsedSider() {
                 this.$refs.side.toggleCollapse();
-                if(this.isCollapsed){
-                    this.headerStyle.left =  this.collapsedWidth + 'px';
-                }else{
+                if (this.isCollapsed) {
+                    this.headerStyle.left = this.collapsedWidth + 'px';
+                } else {
                     this.headerStyle.left = 200 + 'px';
                 }
 
             },
             signOut() {
                 this.$store.commit('loginOut');
-                this.$router.push({
-                    path: '/login'
-                });
             },
-            handleCloseTag (res, type, route) {
+            handleCloseTag(res, type, route) {
                 if (type !== 'others') {
                     if (type === 'all') {
                         this.turnToPage(this.$config.homeName)
@@ -171,8 +169,8 @@
                 }
                 this.setTagNavList(res)
             },
-            turnToPage (route) {
-                let { name, params, query } = {}
+            turnToPage(route) {
+                let {name, params, query} = {}
                 if (typeof route === 'string') {
                     name = route
                 } else {
@@ -184,7 +182,7 @@
                     window.open(name.split('_')[1])
                     return
                 }
-                if(this.$route.name !=  name){
+                if (this.$route.name != name) {
                     this.$router.push({
                         name,
                         params,
@@ -193,14 +191,13 @@
                 }
 
             },
-            handleClick:function (item) {
+            handleClick: function (item) {
                 this.turnToPage(item)
             },
-            fixedSideRightHeight:function () {
+            fixedSideRightHeight: function () {
                 let bodyHeight = document.body.clientHeight;
-                this.$refs.sideRight.$el.style.height = bodyHeight+'px'
+                this.$refs.sideRight.$el.style.height = bodyHeight + 'px'
             }
-
 
         },
         beforeCreate() {
@@ -210,17 +207,17 @@
 
         },
         watch: {
-            '$route' (newRoute) {
-                const { name, query, params, meta } = newRoute
+            '$route'(newRoute) {
+                const {name, query, params, meta} = newRoute
                 this.addTag({
-                    route: { name, query, params, meta },
+                    route: {name, query, params, meta},
                     type: 'push'
                 })
                 this.activeMenu = this.$route.name
             }
         },
-        mounted (){
-            this.$nextTick(()=>{ // 页面渲染完成后的回调
+        mounted() {
+            this.$nextTick(() => { // 页面渲染完成后的回调
                 this.fixedSideRightHeight()
             })
         }

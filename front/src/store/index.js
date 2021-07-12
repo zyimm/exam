@@ -38,12 +38,13 @@ export default new Vuex.Store({
             state.userInfo = data;
         },
         loginOut(state) {
-            Auth.loginOut().then(result => {
-                if(result){
-                    state.userInfo = {}
-                }
+            Auth.loginOut().then(function () {
+                state.userInfo = {}
+            }).then(function () {
+                router.push({
+                    path: 'login'
+                })
             });
-
         },
         setUserToken: function (state, data = '') {
             state.token = data;

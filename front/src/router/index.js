@@ -1,4 +1,3 @@
-
 import VueRouter from 'vue-router'
 import index from '../views/index'
 import login from "../views/login"
@@ -23,8 +22,8 @@ const routes = [
                 path: '/personal-space',
                 name: 'personal-space',
                 title: "个人空间",
-                meta:{
-                    title:'个人空间',
+                meta: {
+                    title: '个人空间',
                     keepAlive: true
                 },
                 component: () => import('../views/personal')
@@ -34,8 +33,8 @@ const routes = [
                 path: '/exam-capsule',
                 name: 'exam-capsule',
                 title: "题库管理",
-                meta:{
-                    title:'题库管理',
+                meta: {
+                    title: '题库管理',
                     keepAlive: true
                 },
                 component: () => import('../views/examCapsule')
@@ -45,8 +44,8 @@ const routes = [
                 path: '/exam-manage',
                 name: 'exam-manage',
                 title: "考试管理",
-                meta:{
-                    title:'考试管理',
+                meta: {
+                    title: '考试管理',
                     keepAlive: true
                 },
                 component: () => import('../views/examManage')
@@ -56,8 +55,8 @@ const routes = [
                 path: '/user-manage',
                 name: 'user-manage',
                 title: "用户管理",
-                meta:{
-                    title:'用户管理',
+                meta: {
+                    title: '用户管理',
                     keepAlive: true
                 },
                 component: () => import('../views/users')
@@ -77,7 +76,6 @@ const router = new VueRouter({
     //base: process.env.BASE_URL,
     routes
 });
-
 
 
 const getCrumb = function (path, route) {
@@ -102,11 +100,14 @@ router.beforeEach((to, from, next) => {
     ViewUI.LoadingBar.start();
     const User = Auth;
     const token = User.getToken();
+
     if (!token && to.name !== LOGIN_PAGE_NAME) {
         // 未登录且要跳转的页面不是登录页
         next({
             name: LOGIN_PAGE_NAME // 跳转到登录页
-        })
+        }).catch(err => {
+            console.log(err)
+        });
     }
 
     if (token && to.name === LOGIN_PAGE_NAME) {
@@ -118,7 +119,6 @@ router.beforeEach((to, from, next) => {
     }
     Store.commit('updateCrumb', getCrumb(to.path, routes[0].children));
     next();
-
 })
 
 router.afterEach(route => {

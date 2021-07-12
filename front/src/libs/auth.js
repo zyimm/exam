@@ -55,6 +55,7 @@ class Auth {
     loginOut() {
         return http.post(api.userLoginOut).then(response => {
             if(response){
+                console.log("remove cookie");
                 this.removeCookie();
             }
         });

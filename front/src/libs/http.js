@@ -90,7 +90,7 @@ const http = {
                 Auth.removeCookie();
                 router.push({
                     path: 'login'
-                });
+                })
             }
         } else {
             this.isSuccess = true;
