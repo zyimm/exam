@@ -155,6 +155,10 @@
 
             },
             signOut() {
+                this.$Message.loading({
+                    content: '退出登陆中...',
+                    duration: 1
+                })
                 this.$store.commit('loginOut');
             },
             handleCloseTag(res, type, route) {
@@ -182,7 +186,7 @@
                     window.open(name.split('_')[1])
                     return
                 }
-                if (this.$route.name != name) {
+                if (this.$route.name !== name) {
                     this.$router.push({
                         name,
                         params,
