@@ -37,9 +37,13 @@ export default new Vuex.Store({
         setUserInfo(state, data = {}) {
             state.userInfo = data;
         },
-        async loginOut(state) {
-            await  Auth.loginOut();
-            state.userInfo = {}
+        loginOut(state) {
+            Auth.loginOut().then(result => {
+                if(result){
+                    state.userInfo = {}
+                }
+            });
+
         },
         setUserToken: function (state, data = '') {
             state.token = data;

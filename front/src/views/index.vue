@@ -153,8 +153,8 @@
                 }
 
             },
-            async signOut() {
-                await this.$store.commit('loginOut');
+            signOut() {
+                this.$store.commit('loginOut');
                 this.$router.push({
                     path: '/login'
                 });

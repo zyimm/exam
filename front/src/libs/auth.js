@@ -50,12 +50,14 @@ class Auth {
     /**
      * loginOut
      *
-     * @returns {Promise<void>}
+     * @returns {Promise<unknown>}
      */
-    async loginOut() {
-        let response = http;
-        this.removeCookie();
-        await response.post(api.userLoginOut);
+    loginOut() {
+        return http.post(api.userLoginOut).then(response => {
+            if(response){
+                this.removeCookie();
+            }
+        });
     }
 
     /**
@@ -70,7 +72,6 @@ class Auth {
         }
         return true;
     }
-
 }
 
 export default new Auth();

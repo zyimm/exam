@@ -8,7 +8,8 @@ import Auth from "./auth";
 const baseUrl = config.getBaseUrl();
 
 const http = {
-    responseData: {},
+
+    response: {},
 
     isSuccess: false,
 
@@ -27,7 +28,7 @@ const http = {
      *
      * @param api
      * @param data
-     * @returns {http}
+     * @returns {Promise<unknown>}
      */
     get: function (api, data = {}) {
         return this.request(this.getUrl(api), 'get', {}, data);
@@ -38,7 +39,7 @@ const http = {
      *
      * @param api
      * @param data
-     * @returns {http}
+     * @returns {Promise<unknown>}
      */
     post: function (api, data = {}) {
         return this.request(this.getUrl(api), 'post', data);
@@ -49,24 +50,25 @@ const http = {
      *
      * @param api
      * @param data
-     * @returns {http}
+     * @returns {Promise<unknown>}
      */
     patch: function (api, data = {}) {
         return this.request(this.getUrl(api), 'patch', data);
     },
 
     /**
+     * request
      *
      * @param url
      * @param method
      * @param data
      * @param params
-     * @returns {http}
+     * @returns {Promise<unknown>}
      */
     request: async function (url, method, data = {}, params = {}) {
-
         //console.log('请求参数:',params, data);
-        await axios({
+
+        return await axios({
             url: url,
             method,
             data,
@@ -74,12 +76,11 @@ const http = {
             headers: {'Authorization': 'Bearer ' + this.getAccessToken()}
         }).catch(e => {
             console.log(e);
-            throw new Error('网络异常:'+e.getMessage())
+            throw new Error('网络异常:' + e)
         }).then(res => {
             console.log('请求返回:', res);
-            this.handleResponse(res.data);
+            return this.handleResponse(res.data);
         });
-        return this;
     },
     handleResponse(response) {
         if (response.error_code !== 0) {
@@ -91,10 +92,11 @@ const http = {
                     path: 'login'
                 });
             }
-            return;
+        } else {
+            this.isSuccess = true;
         }
-        this.isSuccess = true;
-        this.responseData = response.result;
+        this.response = response;
+        return this.response;
     }
 
 };

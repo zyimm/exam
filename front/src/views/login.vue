@@ -90,21 +90,22 @@
         },
         methods: {
             handleSubmit() {
-                let _that = this;
                 this.$refs.loginForm.validate(async (valid) => {
                     if (valid) {
                         this.$Message.loading({
                             content: '正在登陆中...',
                             duration: 1
                         })
-                        await _that.$http.post(_that.$api.userLogin, _that.form);
-                        if(_that.$http.isSuccess){
-                            let result = _that.$http.responseData;
-                            let user = _that.$auth;
-                            user.setToken(result.access_token);
-                            user.setUserInfo(result.user);
-                            _that.$router.push({path: '/'})
-                        }
+                        await this.$http.post(this.$api.userLogin, this.form).then(response =>  {
+                           let result = response.result;
+                            if(result.access_token){
+                                let user = this.$auth;
+                                user.setToken(result.access_token);
+                                user.setUserInfo(result.user);
+                                this.$router.push({path: '/'})
+                            }
+                        });
+
                     }
                 });
             }
