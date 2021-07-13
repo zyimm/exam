@@ -75,7 +75,6 @@
                         <router-view v-if="$route.meta.keepAlive"></router-view>
                     </keep-alive>
                     <router-view v-if="!$route.meta.keepAlive"></router-view>
-
                 </Content>
             </Layout>
         </Layout>
@@ -208,7 +207,6 @@
             this.$store.commit('setUserInfo', this.$auth.getUserInfo());
             //初始化tag nav
             this.$store.commit('getTagNavList');
-
         },
         watch: {
             '$route'(newRoute) {

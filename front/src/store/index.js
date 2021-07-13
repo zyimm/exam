@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Auth from '../libs/auth'
 import Config from '../config'
 import router from '@/router'
-import {setTagNavListInLocalstorage ,getNextRoute, getTagNavListFromLocalstorage, routeEqual} from '../libs/util'
+import {getNextRoute, getTagNavListFromLocalstorage, routeEqual, setTagNavListInLocalstorage} from '../libs/util'
 
 Vue.use(Vuex);
 
@@ -13,11 +13,11 @@ const closePage = (state, route) => {
         return !routeEqual(item, route)
     })
 
-    if(Object.keys(nextRoute).length > 0){
+    if (Object.keys(nextRoute).length > 0) {
         router.push(nextRoute)
-    }else{
+    } else {
         router.push({
-            path:'/'
+            path: '/'
         });
     }
 }
@@ -28,7 +28,7 @@ export default new Vuex.Store({
         crumb: [],
         userInfo: {},
         token: '',
-        tagNavList:[]
+        tagNavList: []
     },
     mutations: {
         updateCrumb(state, data = []) {
@@ -49,10 +49,10 @@ export default new Vuex.Store({
         setUserToken: function (state, data = '') {
             state.token = data;
         },
-        addTag:function (state, { route, type = 'unshift' }) {
+        addTag: function (state, {route, type = 'unshift'}) {
             let router = route;
-            for(let i in state.tagNavList){
-                if(state.tagNavList[i].name === route.name){
+            for (let i in state.tagNavList) {
+                if (state.tagNavList[i].name === route.name) {
                     return
                 }
             }
@@ -67,30 +67,40 @@ export default new Vuex.Store({
             }
             setTagNavListInLocalstorage(state.tagNavList);
         },
-        closeTag:function(state, route){
+        closeTag: function (state, route) {
             state.tagNavList.filter(item => routeEqual(item, route))
             closePage(state, route)
         },
-        getTagNavList:function(state){
+        /**
+         * getTagNavList
+         *
+         *
+         * @param state
+         */
+        getTagNavList: function (state) {
             state.tagNavList = getTagNavListFromLocalstorage()
-            if(state.tagNavList.length <= 0){
+            if (state.tagNavList.length <= 0) {
                 state.tagNavList = [
                     {
-                        name:"personal-space",
-                        meta:{
-                            title:'个人空间'
+                        name: "personal-space",
+                        meta: {
+                            title: '个人空间'
                         }
                     }
                 ];
             }
         },
-        setTagNavList:function (state, routes) {
+        /**
+         * setTagNavList
+         *
+         * @param state
+         * @param routes
+         */
+        setTagNavList: function (state, routes) {
             state.tagNavList = routes;
             setTagNavListInLocalstorage(state.tagNavList);
         }
     },
-    actions: {
-
-    },
+    actions: {},
     modules: {}
 })
