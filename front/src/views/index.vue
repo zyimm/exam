@@ -65,11 +65,13 @@
                         </Col>
                     </Row>
                 </Header>
+<!--                tag-nav-wrapper-->
                 <div class="tag-nav-wrapper">
                     <tags-nav :value="$route" @input="handleClick" :list="this.$store.state.tagNavList"
                               @on-close="handleCloseTag"/>
                     <div class="clear-fix"></div>
                 </div>
+                <!--内容-->
                 <Content class="content-wrapper ivu-layout-content sys-content">
                     <keep-alive>
                         <router-view v-if="$route.meta.keepAlive"></router-view>
