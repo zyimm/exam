@@ -25,7 +25,9 @@
         </Form>
 
         <Card>
-            <p slot="title">No border title</p>
+            <div slot="title">
+                <Button type="primary"  icon="ios-add-circle-outline"> 新增题库</Button>
+            </div>
             <div>
                 <Table border :columns="columns" :data="rows"></Table>
             </div>
