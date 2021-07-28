@@ -33,7 +33,7 @@
 
         <Card ref="tableWrapper">
             <div slot="title">
-                <Button type="primary" icon="ios-add-circle-outline"> 新增题库</Button>
+                <Button type="primary" icon="ios-add-circle-outline">新增考试</Button>
             </div>
             <div>
                 <Scroll :height="tableHeight" >
@@ -74,7 +74,8 @@
                         {required: true, message: 'Please fill in the user name', trigger: 'blur'}
                     ],
                     password: [
-                        {required: true, message: 'Please fill in the password.', trigger: 'blur'},
+                        {
+                            required: true, message: 'Please fill in the password.', trigger: 'blur'},
                         {
                             type: 'string',
                             min: 6,
