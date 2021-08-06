@@ -1,5 +1,7 @@
 package com.example.exam.common.response;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import lombok.Data;
 
 
@@ -8,8 +10,8 @@ import lombok.Data;
  *
  * @author ZYIMM
  */
-@Data
 
+@Data
 public class Response {
 
     /**
@@ -17,9 +19,9 @@ public class Response {
      */
     private int code;
 
-    private String msg;
+    private String message;
 
-    private Object data;
+    private Object result;
 
     public enum ResponseEnum{
         //成功
@@ -27,43 +29,43 @@ public class Response {
         //请求失败
         FAIL(400,"请求失败!");
 
-        private final Integer ResponseCode;
+        private final Integer responseCode;
 
         /**
          * 错误描述
          */
-        private final String ResponseMsg;
+        private final String responseMsg;
 
-        ResponseEnum(Integer ResponseCode, String ResponseMsg) {
-            this.ResponseCode = ResponseCode;
-            this.ResponseMsg = ResponseMsg;
+        ResponseEnum(Integer responseCode, String responseMsg) {
+            this.responseCode = responseCode;
+            this.responseMsg = responseMsg;
         }
 
         public String getResponseMsg() {
-            return ResponseMsg;
+            return responseMsg;
         }
 
         public Integer getResponseCode(){
-            return ResponseCode;
+            return responseCode;
         }
     }
 
     /**
      * success
      *
-     * @param data 数据
+     * @param result 数据
      * @return Response
      * @author zyimm
      */
-    public static Response success(Object data) {
-        return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMsg(), data);
+    public static Response success(Object result) {
+        return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMsg(), result);
     }
 
-    public static Response success(int code, String msg, Object data) {
+    public static Response success(int code, String msg, Object result) {
         Response Response = new Response();
         Response.setCode(code);
-        Response.setMsg(msg);
-        Response.setData(data);
+        Response.setMessage(msg);
+        Response.setResult(result);
         return Response;
     }
 
@@ -76,31 +78,31 @@ public class Response {
      */
     public static Response fail(String msg) {
         //
-        return fail(ResponseEnum.FAIL.getResponseCode(), msg, null);
+        return fail(ResponseEnum.FAIL.getResponseCode(), msg, Response.getDefaultObject());
     }
 
     /**
      * 失败
      *
      * @param code code
-     * @param msg msg
+     * @param message message
      * @return Response
      */
-    public static Response fail(Integer code, String msg) {
+    public static Response fail(Integer code, String message) {
         //
-        return fail(code, msg, null);
+        return fail(code, message, Response.getDefaultObject());
     }
 
     /**
      * 失败
      *
      * @param msg 提示语
-     * @param data 数据
+     * @param result 数据
      * @return Response
      */
-    public static Response fail(String msg, Object data) {
+    public static Response fail(String msg, Object result) {
         //
-        return fail(ResponseEnum.FAIL.getResponseCode(), msg, data);
+        return fail(ResponseEnum.FAIL.getResponseCode(), msg, result);
     }
 
     /**
@@ -108,14 +110,19 @@ public class Response {
      *
      * @param code 错误码
      * @param msg 消息
-     * @param data 数据
+     * @param result 数据
      * @return Response
      */
-    public static Response fail(int code, String msg, Object data) {
+    public static Response fail(int code, String msg, Object result) {
         Response Response = new Response();
         Response.setCode(code);
-        Response.setMsg(msg);
-        Response.setData(data);
+        Response.setMessage(msg);
+        Response.setResult(result);
         return Response;
+    }
+
+    public static JSONObject getDefaultObject(){
+        String jsonStr = "{}";
+        return JSONUtil.parseObj(jsonStr);
     }
 }

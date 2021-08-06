@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public Response index(){
         return Response.success("hello");
+    }
+
+
+    @GetMapping("/error-not")
+    public Response error(){
+        return Response.fail("error");
     }
 }
