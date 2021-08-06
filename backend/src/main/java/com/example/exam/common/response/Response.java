@@ -55,7 +55,6 @@ public class Response {
      * @return Response
      * @author zyimm
      */
-    @org.jetbrains.annotations.NotNull
     public static Response success(Object data) {
         return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMsg(), data);
     }
@@ -79,7 +78,6 @@ public class Response {
         //
         return fail(ResponseEnum.FAIL.getResponseCode(), msg, null);
     }
-
 
     /**
      * 失败
