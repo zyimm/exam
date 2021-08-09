@@ -34,15 +34,15 @@ public class Response {
         /**
          * 错误描述
          */
-        private final String responseMsg;
+        private final String responseMessage;
 
-        ResponseEnum(Integer responseCode, String responseMsg) {
+        ResponseEnum(Integer responseCode, String responseMessage) {
             this.responseCode = responseCode;
-            this.responseMsg = responseMsg;
+            this.responseMessage = responseMessage;
         }
 
-        public String getResponseMsg() {
-            return responseMsg;
+        public String getResponseMessage() {
+            return responseMessage;
         }
 
         public Integer getResponseCode(){
@@ -58,7 +58,7 @@ public class Response {
      * @author zyimm
      */
     public static Response success(Object result) {
-        return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMsg(), result);
+        return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMessage(), result);
     }
 
     public static Response success(int code, String msg, Object result) {
@@ -121,6 +121,11 @@ public class Response {
         return Response;
     }
 
+    /**
+     * 空对象返回
+     *
+     * @return
+     */
     public static JSONObject getDefaultObject(){
         String jsonStr = "{}";
         return JSONUtil.parseObj(jsonStr);

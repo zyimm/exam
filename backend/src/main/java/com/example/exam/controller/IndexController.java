@@ -12,7 +12,6 @@ public class IndexController {
         return Response.success("hello");
     }
 
-
     @GetMapping("/error-not")
     public Response error(){
         return Response.fail("error");
