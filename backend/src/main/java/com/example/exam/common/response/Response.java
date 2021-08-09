@@ -61,6 +61,15 @@ public class Response {
         return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMessage(), result);
     }
 
+    /**
+     * success
+     *
+     *
+     * @param code
+     * @param msg
+     * @param result
+     * @return
+     */
     public static Response success(int code, String msg, Object result) {
         Response Response = new Response();
         Response.setCode(code);
