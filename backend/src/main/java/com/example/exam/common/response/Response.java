@@ -58,25 +58,10 @@ public class Response {
      * @author zyimm
      */
     public static Response success(Object result) {
-        return success(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMessage(), result);
+        return raw(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMessage(), result);
     }
 
-    /**
-     * success
-     *
-     *
-     * @param code
-     * @param msg
-     * @param result
-     * @return
-     */
-    public static Response success(int code, String msg, Object result) {
-        Response Response = new Response();
-        Response.setCode(code);
-        Response.setMessage(msg);
-        Response.setResult(result);
-        return Response;
-    }
+   
 
 
     /**
@@ -87,7 +72,7 @@ public class Response {
      */
     public static Response fail(String msg) {
         //
-        return fail(ResponseEnum.FAIL.getResponseCode(), msg, Response.getDefaultObject());
+        return raw(ResponseEnum.FAIL.getResponseCode(), msg, Response.getDefaultObject());
     }
 
     /**
@@ -99,7 +84,7 @@ public class Response {
      */
     public static Response fail(Integer code, String message) {
         //
-        return fail(code, message, Response.getDefaultObject());
+        return raw(code, message, Response.getDefaultObject());
     }
 
     /**
@@ -111,24 +96,9 @@ public class Response {
      */
     public static Response fail(String msg, Object result) {
         //
-        return fail(ResponseEnum.FAIL.getResponseCode(), msg, result);
+        return raw(ResponseEnum.FAIL.getResponseCode(), msg, result);
     }
 
-    /**
-     * 失败
-     *
-     * @param code 错误码
-     * @param msg 消息
-     * @param result 数据
-     * @return Response
-     */
-    public static Response fail(int code, String msg, Object result) {
-        Response Response = new Response();
-        Response.setCode(code);
-        Response.setMessage(msg);
-        Response.setResult(result);
-        return Response;
-    }
 
     /**
      * 空对象返回
@@ -138,5 +108,23 @@ public class Response {
     public static JSONObject getDefaultObject(){
         String jsonStr = "{}";
         return JSONUtil.parseObj(jsonStr);
+    }
+
+
+    /**
+     * raw
+     * 
+     * 
+     * @param code 错误码
+     * @param message 消息
+     * @param result 数据
+     * @return Response
+     */
+    public static Response raw(int code, String message, Object result) {
+        Response response = new Response();
+        response.setCode(code);
+        response.setMessage(message);
+        response.setResult(result);
+        return response;
     }
 }
