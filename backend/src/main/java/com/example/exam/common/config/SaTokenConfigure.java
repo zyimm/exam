@@ -1,5 +1,6 @@
 package com.example.exam.common.config;
 
+import cn.dev33.satoken.interceptor.SaRouteInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

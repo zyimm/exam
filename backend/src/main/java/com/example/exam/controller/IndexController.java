@@ -4,6 +4,9 @@ import com.example.exam.common.response.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author ZYIMM
+ */
 @RestController
 public class IndexController {
 

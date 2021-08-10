@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * @author ZYIMM
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
