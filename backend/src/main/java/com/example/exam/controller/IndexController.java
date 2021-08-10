@@ -19,4 +19,5 @@ public class IndexController {
     public Response error(){
         return Response.fail("error");
     }
+
 }
