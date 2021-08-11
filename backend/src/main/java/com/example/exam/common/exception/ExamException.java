@@ -2,9 +2,13 @@ package com.example.exam.common.exception;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 
+ * @author zyimm
+ */
 public class ExamException extends RuntimeException {
 
-    private Integer code;
+    private final Integer code;
 
     public  ExamException(@NotNull String message, @NotNull Integer code) {
         super(message);

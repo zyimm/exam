@@ -3,11 +3,11 @@ package com.example.exam.common.exception;
 import cn.dev33.satoken.exception.NotLoginException;
 
 /**
- *
+ * 异常枚举值
+ * 
  * @author ZYIMM
  */
 public enum ExceptionEnum {
-
 
     /**
      * 未提供token
@@ -44,7 +44,6 @@ public enum ExceptionEnum {
     public String getExceptionCode(){
         return exceptionCode;
     }
-
 
     /**
      * 根据code匹配

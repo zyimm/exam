@@ -51,7 +51,7 @@ public class Response {
     }
 
     /**
-     * success
+     * 成功
      *
      * @param result 数据
      * @return Response
@@ -60,9 +60,6 @@ public class Response {
     public static Response success(Object result) {
         return raw(ResponseEnum.SUCCESS.getResponseCode(), ResponseEnum.SUCCESS.getResponseMessage(), result);
     }
-
-   
-
 
     /**
      * 失败
@@ -99,7 +96,6 @@ public class Response {
         return raw(ResponseEnum.FAIL.getResponseCode(), msg, result);
     }
 
-
     /**
      * 空对象返回
      *
@@ -121,6 +117,7 @@ public class Response {
      * @return Response
      */
     public static Response raw(int code, String message, Object result) {
+
         Response response = new Response();
         response.setCode(code);
         response.setMessage(message);
