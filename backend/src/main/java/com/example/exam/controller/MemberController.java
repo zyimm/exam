@@ -8,6 +8,7 @@ import com.example.exam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,8 +28,8 @@ public class MemberController {
     }
 
     @PostMapping("/member/member")
-    public Response add(MemberRequest memberRequest){
-        Map<String, Object> result = memberService.insertMemberForRequest(memberRequest);
+    public Response add(@RequestBody MemberRequest memberRequest){
+        String result = memberService.insertMemberForRequest(memberRequest);
         return Response.success(result);
     }
 }

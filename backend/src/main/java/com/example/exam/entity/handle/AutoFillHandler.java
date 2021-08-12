@@ -19,7 +19,9 @@ public class AutoFillHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         Log.get().info("start insert fill ....");
         // 起始版本 3.3.0(推荐使用)
-        this.strictInsertFill(metaObject, "created_at", LocalDateTime.class, LocalDateTime.now()); 
+        Log.get().info(LocalDateTime.now().toString());
+        this.strictInsertFill(metaObject, "createdAt", LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "updatedAt", LocalDateTime.class, LocalDateTime.now()); 
        
     }
 
@@ -27,7 +29,7 @@ public class AutoFillHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         Log.get().info("start update fill ....");
         // 起始版本 3.3.0(推荐)
-        this.strictUpdateFill(metaObject, "updated_at", LocalDateTime.class, LocalDateTime.now()); 
+        this.strictUpdateFill(metaObject, "updatedAt", LocalDateTime.class, LocalDateTime.now()); 
 
     }
     

@@ -1,12 +1,16 @@
 package com.example.exam.entity;
 
-import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,13 +20,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @TableName("member")
 @EqualsAndHashCode(callSuper = true)
+@JsonNaming(SnakeCaseStrategy.class)
 public class Member extends Base{
     
      /**
      * 指定主键名
      */
-    @TableId(value = "id", type = IdType.INPUT)
-    private BigInteger id;
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    private Long id;
 
     private String memberName;
 
@@ -42,13 +47,14 @@ public class Member extends Base{
 
     private String lastLoginIp;
 
-    private Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     private String updatedUid;
 
-    private Date updatedAt;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updatedAt;
 
     @TableLogic
-    private Date deletedAt;
+    private LocalDateTime deletedAt;
 
 }

@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
     MemberBo memberBo;
 
-    @Autowired
+  
     Member member;
 
     @Autowired
@@ -79,12 +79,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String insertMemberForRequest(MemberRequest memberRequest) {
-
-    
+        this.member = new Member();
         BeanUtils.copyProperties(memberRequest, this.member);
-        this.memberMapper.insert(this.member);
-
-       return "";
+        return String.valueOf(this.memberMapper.insert(this.member));
     }
     
 }
