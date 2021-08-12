@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  snow-flake: 
+    datacenterId: 2
+    workerId: 1
 
 sa-token:
   # token名称 (同时也是cookie名称)
