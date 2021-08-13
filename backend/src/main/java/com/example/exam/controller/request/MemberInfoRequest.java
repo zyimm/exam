@@ -12,9 +12,15 @@ import lombok.EqualsAndHashCode;
 @Data
 @JsonNaming(SnakeCaseStrategy.class)
 @EqualsAndHashCode(callSuper = true)
-public class MemberRequest extends BaseRequest {
+public class MemberInfoRequest  extends BaseRequest{
 
-   private MemberMainRequest main;
+    private String memberId;
 
-   private MemberInfoRequest info; 
+    private String desc;
+
+    private String realName;
+
+    private String birthday;
+
+    private String address;
 }

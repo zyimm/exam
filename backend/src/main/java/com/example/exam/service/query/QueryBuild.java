@@ -13,10 +13,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 public class QueryBuild<T, K> {
 
      /**
-     * 构建query
-     *
-     * @param map 查询map
-     */
+      * 构建query
+      * 
+      * @param queryWrapper
+      * @param map 查询map
+      * @param request
+      * @return QueryWrapper<T>
+      */
     public QueryWrapper<T> buildQuery(QueryWrapper<T> queryWrapper, Map<String, String> map, K request) {
         map.forEach((key, val) -> {
             try {

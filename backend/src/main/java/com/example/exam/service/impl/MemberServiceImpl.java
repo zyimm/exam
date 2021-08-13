@@ -5,8 +5,11 @@ import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.exam.common.exception.ExamException;
 import com.example.exam.controller.request.MemberRequest;
 import com.example.exam.entity.Member;
+import com.example.exam.entity.MemberInfo;
+import com.example.exam.mapper.MemberInfoMapper;
 import com.example.exam.mapper.MemberMapper;
 import com.example.exam.service.MemberService;
 import com.example.exam.service.bo.MemberBo;
@@ -15,6 +18,9 @@ import com.example.exam.service.query.QueryBuild;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import cn.hutool.log.Log;
 
 /**
  * 
@@ -26,12 +32,16 @@ public class MemberServiceImpl implements MemberService {
 
     MemberMapper memberMapper;
 
+    @Autowired
+    MemberInfoMapper memberInfoMapper;
+
     QueryWrapper<Member> queryWrapper;
 
     MemberBo memberBo;
-
   
     Member member;
+
+    MemberInfo memberInfo;
 
     @Autowired
     public void setMemberMapper(MemberMapper memberMapper) {
@@ -56,7 +66,7 @@ public class MemberServiceImpl implements MemberService {
      */
     public Map<String, String> condition() {
         Map<String, String> map = new HashMap<>(2);
-        map.put("likeRight", "member_name@getStoreInfo");
+        map.put("likeRight", "member_name@getMemberName");
         return map;
     }
 
@@ -78,10 +88,19 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public String insertMemberForRequest(MemberRequest memberRequest) {
         this.member = new Member();
-        BeanUtils.copyProperties(memberRequest, this.member);
-        return String.valueOf(this.memberMapper.insert(this.member));
+        this.memberInfo = new MemberInfo();
+        Log.get().info(memberRequest.getMain().toString());
+        BeanUtils.copyProperties(memberRequest.getMain(), this.member);
+        BeanUtils.copyProperties(memberRequest.getInfo(), this.memberInfo);
+        if(!String.valueOf(this.memberMapper.insert(this.member)).isEmpty()){
+            this.memberInfo.setMemberId(this.member.getId());
+            this.memberInfoMapper.insert(this.memberInfo);
+            return String.valueOf(this.member.getId());
+        }
+        throw new ExamException("保存失败");
     }
     
 }

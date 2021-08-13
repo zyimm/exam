@@ -1,5 +1,6 @@
 package com.example.exam.controller.request;
 
+
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -12,9 +13,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @JsonNaming(SnakeCaseStrategy.class)
 @EqualsAndHashCode(callSuper = true)
-public class MemberRequest extends BaseRequest {
+public class MemberMainRequest  extends BaseRequest{
 
-   private MemberMainRequest main;
+    private String memberName;
 
-   private MemberInfoRequest info; 
+    private String memberNickname;
+
+    private String memberAvatar;
+
+    private Integer memberSex;
 }

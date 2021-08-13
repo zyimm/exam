@@ -1,12 +1,9 @@
 package com.example.exam.entity.handle;
 
 import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
-
 import cn.hutool.log.Log;
 
 /**
@@ -30,7 +27,6 @@ public class AutoFillHandler implements MetaObjectHandler {
         Log.get().info("start update fill ....");
         // 起始版本 3.3.0(推荐)
         this.strictUpdateFill(metaObject, "updatedAt", LocalDateTime.class, LocalDateTime.now()); 
-
     }
     
 }
