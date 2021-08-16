@@ -1,12 +1,11 @@
 package com.zyimm.service.bo;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zyimm.dao.entity.UserEntity;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.zyimm.dao.entity.UserEntity;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-
-
-import org.springframework.stereotype.Component;
 
 /**
  * @author zyimm

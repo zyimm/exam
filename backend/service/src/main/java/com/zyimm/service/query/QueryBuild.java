@@ -1,12 +1,13 @@
 package com.zyimm.service.query;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 /**
  * @author zyimm
  */

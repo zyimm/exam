@@ -1,8 +1,8 @@
 package com.zyimm.common.response;
 
-import lombok.Data;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import lombok.Data;
 
 /**
  * 统一返回

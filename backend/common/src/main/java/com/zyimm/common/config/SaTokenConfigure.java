@@ -1,10 +1,11 @@
 package com.zyimm.common.config;
 
 import cn.dev33.satoken.interceptor.SaRouteInterceptor;
-import java.util.List;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * @author zyimm
