@@ -1,0 +1,106 @@
+package com.zyimm.service.impl;
+
+import java.util.HashMap;
+import java.util.Map;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zyimm.common.exception.ExamException;
+import com.zyimm.common.request.UserRequest;
+import com.zyimm.dao.entity.UserEntity;
+import com.zyimm.dao.entity.UserInfoEntity;
+import com.zyimm.dao.mapper.UserInfoMapper;
+import com.zyimm.dao.mapper.UserMapper;
+import com.zyimm.service.UserService;
+import com.zyimm.service.bo.UserBo;
+import com.zyimm.service.query.QueryBuild;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import cn.hutool.log.Log;
+
+/**
+ * @author zyimm
+ */
+@Component
+public class UserServiceImpl implements UserService{
+
+
+    UserMapper userMapper;
+
+    @Autowired
+    UserInfoMapper userInfoMapper;
+
+    QueryWrapper<UserEntity> queryWrapper;
+
+    UserBo userBo;
+  
+    UserEntity user;
+
+    UserInfoEntity userInfo;
+
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    @Override
+    public UserEntity getUserInfoById(String id) {
+        
+        return userMapper.selectById(id);
+    }
+
+    @Autowired
+    public void setUserBo(UserBo userBo) {
+        this.userBo = userBo;
+    }
+
+     /**
+     * 查询配置
+     *
+     * @return Map map
+     */
+    public Map<String, String> condition() {
+        Map<String, String> map = new HashMap<>(2);
+        map.put("likeRight", "User_name@getUserName");
+        return map;
+    }
+
+
+    @Override
+    public Map<String, Object> getUserList(UserRequest userRequest) {
+        this.queryWrapper = new  QueryWrapper<>();
+        this.queryWrapper = new QueryBuild<UserEntity, UserRequest>().buildQuery(this.queryWrapper, this.condition(), userRequest);
+        IPage<UserEntity> page = new Page<>(userRequest.getPage(), userRequest.getLimit());
+        this.queryWrapper.orderByDesc("id");
+        IPage<UserEntity> listUser =  userMapper.selectPage(page, this.queryWrapper);
+        return  this.userBo.userList(listUser);
+    }
+
+    @Override
+    public String insertUser(UserEntity user) {
+    
+        return "";
+    }
+
+    @Override
+    @Transactional(rollbackFor=Exception.class)
+    public Map<String, Object> insertUserForRequest(UserRequest userRequest) {
+        this.user = new UserEntity();
+        this.userInfo = new UserInfoEntity();
+        Log.get().info(userRequest.getMain().toString());
+        BeanUtils.copyProperties(userRequest.getMain(), this.user);
+        BeanUtils.copyProperties(userRequest.getInfo(), this.userInfo);
+        if(!String.valueOf(this.userMapper.insert(this.user)).isEmpty()){
+            this.userInfo.setUserId(this.user.getId());
+            this.userInfoMapper.insert(this.userInfo);
+            var result = new HashMap<String, Object>(1);
+            result.put("User_id", this.user.getId());
+            return result;
+        }
+        throw new ExamException("保存失败");
+    }
+}
