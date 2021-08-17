@@ -15,6 +15,7 @@ public class SaTokenConfigure implements WebMvcConfigurer{
 
     public  final List<String> exclude = List.of(
         "/hello", 
+        "/hi", 
         "/error-not",
         "/test"
         );
