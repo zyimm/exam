@@ -20,6 +20,7 @@ public class UserBo {
         pageInfo.put("page", userList.getCurrent());
         pageInfo.put("page_size", userList.getSize());
         pageInfo.put("total", userList.getTotal());
+        
         map.put("page_info", pageInfo);
         return map;
     }

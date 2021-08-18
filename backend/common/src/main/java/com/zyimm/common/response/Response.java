@@ -16,7 +16,7 @@ public class Response {
     /**
      *  code 200是正常，非200表示异常
      */
-    private int code;
+    private Integer code;
 
     private String message;
 
