@@ -80,13 +80,13 @@ const router = new VueRouter({
 
 const getCrumb = function (path, route) {
     let crumb = [];
-    for (let index in route) {
-        if (route[index].path != path) {
-            if (route[index].children) {
-                getCrumb(path, route[index].children);
+    for (let i in route) {
+        if (route[i].path != path) {
+            if (route[i].children) {
+                getCrumb(path, route[i].children);
             }
         } else {
-            crumb.push(route[index]);
+            crumb.push(route[i]);
         }
     }
     crumb.unshift({
