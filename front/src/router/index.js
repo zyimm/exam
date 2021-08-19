@@ -5,8 +5,6 @@ import ViewUI from 'view-design'
 import Store from '../store'
 import Auth from '../libs/auth'
 
-// Vue.use(ViewUI);
-// Vue.use(VueRouter)
 
 const LOGIN_PAGE_NAME = 'login';
 
