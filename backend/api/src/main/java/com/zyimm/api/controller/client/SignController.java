@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SignController {
-    
+
     @PostMapping("/user/signIn")
-    public Response in(@RequestBody SignRequest signRequest){
+    public Response in(@RequestBody SignRequest signRequest) {
 
         Map<String, Object> result = new HashMap<>(4);
         return Response.success(result);
