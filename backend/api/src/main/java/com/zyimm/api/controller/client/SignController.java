@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SignController {
 
+    /**
+     * 登录
+     * 
+     * @param signRequest
+     * @return
+     */
     @PostMapping("/user/signIn")
     public Response in(@RequestBody SignRequest signRequest) {
 
