@@ -63,12 +63,12 @@ public class Response {
     /**
      * 失败
      *
-     * @param msg 提示语
+     * @param message 提示语
      * @return Response
      */
-    public static Response fail(String msg) {
+    public static Response fail(String message) {
         //
-        return raw(ResponseEnum.FAIL.getResponseCode(), msg, Response.getDefaultObject());
+        return raw(ResponseEnum.FAIL.getResponseCode(), message, Response.getDefaultObject());
     }
 
     /**
@@ -86,13 +86,13 @@ public class Response {
     /**
      * 失败
      *
-     * @param msg 提示语
+     * @param message 提示语
      * @param result 数据
      * @return Response
      */
-    public static Response fail(String msg, Object result) {
+    public static Response fail(String message, Object result) {
         //
-        return raw(ResponseEnum.FAIL.getResponseCode(), msg, result);
+        return raw(ResponseEnum.FAIL.getResponseCode(), message, result);
     }
 
     /**

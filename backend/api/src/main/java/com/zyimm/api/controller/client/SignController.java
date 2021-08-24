@@ -2,10 +2,8 @@ package com.zyimm.api.controller.client;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.zyimm.common.request.SignRequest;
 import com.zyimm.common.response.Response;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
