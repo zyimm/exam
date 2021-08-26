@@ -24,7 +24,7 @@ public class SignController {
      */
     @PostMapping("/user/signIn")
     public Response in(@RequestBody SignRequest signRequest) {
-
+        //映射
         Map<String, Object> result = new HashMap<>(4);
         return Response.success(result);
     }
