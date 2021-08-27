@@ -84,6 +84,7 @@
                         }
                     ]
                 },
+                //columns
                 columns: [
                     {
                         title: 'Name',
