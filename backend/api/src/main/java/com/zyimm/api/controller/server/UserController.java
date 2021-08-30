@@ -19,6 +19,12 @@ public class UserController {
     @Autowired
     private UserService  userService;
 
+    /**
+     *  用户列表
+     * 
+     * @param userRequest
+     * @return
+     */
     @GetMapping("/user/users")
     public Response getMembers(UserRequest userRequest){
         Map<String, Object> result = userService.getUserList(userRequest);
