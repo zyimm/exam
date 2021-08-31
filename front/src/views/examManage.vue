@@ -71,11 +71,15 @@
                 },
                 ruleInline: {
                     user: [
-                        {required: true, message: 'Please fill in the user name', trigger: 'blur'}
+                        {
+                            required: true, message: 'Please fill in the user name', 
+                            trigger: 'blur'
+                        }
                     ],
                     password: [
                         {
-                            required: true, message: 'Please fill in the password.', trigger: 'blur'},
+                            required: true, message: 'Please fill in the password.',
+                             trigger: 'blur'},
                         {
                             type: 'string',
                             min: 6,
