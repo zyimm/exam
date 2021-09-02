@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 import java.time.LocalDateTime;
 
 /**
@@ -50,7 +49,7 @@ public class UserEntity  extends BaseEntity{
     @TableLogic
     private LocalDateTime deletedAt;
 
-
     private UserInfoEntity info;
+  
 
 }

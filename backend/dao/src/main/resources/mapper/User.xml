@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.zyimm.dao.mapper.UserMapper">
-    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-    <!-- 
-     方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
-         SELECT * FROM class WHERE c_id=1;
-         SELECT * FROM teacher WHERE t_id=1   //1 是上一个查询得到的teacher_id的值
-     -->
     <resultMap type="com.zyimm.dao.entity.UserEntity" id="UserInfoResultMap">
+        <id property="id" column="id" />
+        <result property="createdAt" column="created_at" />
         <association property="info" column="id" select="getInfo" />
     </resultMap>
 
@@ -17,7 +13,7 @@
 
 
     <select id="getInfo" parameterType="Long" resultType="com.zyimm.dao.entity.UserInfoEntity">
-         SELECT * FROM `exam`.`user_info` WHERE member_id=#{id}
+         SELECT * FROM `exam`.`user_info` WHERE user_id=#{id}
       </select>
 
 </mapper>
