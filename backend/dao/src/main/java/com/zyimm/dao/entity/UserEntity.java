@@ -49,4 +49,8 @@ public class UserEntity  extends BaseEntity{
 
     @TableLogic
     private LocalDateTime deletedAt;
+
+
+    private UserInfoEntity info;
+
 }

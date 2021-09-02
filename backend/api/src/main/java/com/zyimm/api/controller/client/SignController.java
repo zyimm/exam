@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.dev33.satoken.stp.StpUtil;
+
 /**
  * 登录
  * 
@@ -26,6 +28,8 @@ public class SignController {
     public Response in(@RequestBody SignRequest signRequest) {
         //映射
         Map<String, Object> result = new HashMap<>(4);
+        StpUtil.login("10001");
+        result.put("token", StpUtil.getTokenInfo()); 
         return Response.success(result);
     }
 }

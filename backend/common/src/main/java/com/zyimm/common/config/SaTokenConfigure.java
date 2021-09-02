@@ -17,7 +17,8 @@ public class SaTokenConfigure implements WebMvcConfigurer{
         "/hello", 
         "/hi", 
         "/error-not",
-        "/test"
+        "/test",
+        "/user/signIn"
         );
 
    /**

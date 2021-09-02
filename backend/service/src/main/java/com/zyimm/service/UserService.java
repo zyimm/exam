@@ -15,7 +15,7 @@ public interface UserService {
      * @param id
      * @return
      */
-    public UserEntity getUserInfoById(String id);
+    public UserEntity getUserInfoById(Long id);
 
 
     /**

@@ -47,9 +47,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserEntity getUserInfoById(String id) {
-        
-        return userMapper.selectById(id);
+    public UserEntity getUserInfoById(Long id) {
+    
+        return userMapper.getUserInfoById(id);
     }
 
     @Autowired
