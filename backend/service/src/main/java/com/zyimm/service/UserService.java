@@ -13,7 +13,7 @@ public interface UserService {
      * 根据id获取会员信息
      * 
      * @param id
-     * @return
+     * @return UserEntity
      */
     public UserEntity getUserInfoById(Long id);
 
