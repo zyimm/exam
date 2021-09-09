@@ -50,7 +50,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <classifier>exec</classifier>
+                    <classifier>package</classifier>
                     <image>
                         <builder>paketobuildpacks/builder:tiny</builder>
                         <env>
