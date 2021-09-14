@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
     
+    /**
+     * test
+     * 
+     * @return
+     */
     @GetMapping("/hi")
     public String hello(){
         return "hi";
