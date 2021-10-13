@@ -5,7 +5,7 @@ import ViewUI from 'view-design'
 import Store from '../store'
 import Auth from '../libs/auth'
 
-
+//login
 const LOGIN_PAGE_NAME = 'login';
 
 const routes = [
