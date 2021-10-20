@@ -26,7 +26,6 @@ public class SignController {
      */
     @PostMapping("/user/signIn")
     public Response in(@RequestBody SignRequest signRequest) {
-        //映射
         Map<String, Object> result = new HashMap<>(4);
         StpUtil.login("10001");
         result.put("token", StpUtil.getTokenInfo()); 
