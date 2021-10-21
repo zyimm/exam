@@ -2,9 +2,9 @@ package com.zyimm.api.controller.server;
 
 import java.util.Map;
 
-import com.zyimm.common.request.UserRequest;
+import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.response.Response;
-import com.zyimm.dao.entity.UserEntity;
+import com.zyimm.dao.dto.UserDto;
 import com.zyimm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +24,12 @@ public class UserController {
     /**
      *  用户列表
      * 
-     * @param userRequest
+     * @param UserQueryRequest
      * @return
      */
     @GetMapping("/user/users")
-    public Response getMembers(UserRequest userRequest){
-        Map<String, Object> result = userService.getUserList(userRequest);
+    public Response getMembers(UserQueryRequest userQueryRequest){
+        Map<String, Object> result = userService.getUserList(userQueryRequest);
         return Response.success(result);
     }
 
@@ -42,9 +42,7 @@ public class UserController {
      */
     @GetMapping("/user/user/{id}")
     public Response getMember(@PathVariable("id") Long id){
-        UserEntity result = userService.getUserInfoById(id);
+        UserDto result = userService.getUserInfoById(id);
         return Response.success(result);
     }
-
-
 }

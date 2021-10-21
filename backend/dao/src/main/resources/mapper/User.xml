@@ -8,12 +8,12 @@
     </resultMap>
 
     <select id="getUserInfoById" parameterType="Long" resultMap="UserInfoResultMap">
-        SELECT * FROM `exam`.`user` WHERE id = #{id}
+        SELECT * FROM  `user` WHERE id = #{id}
     </select>
 
 
     <select id="getInfo" parameterType="Long" resultType="com.zyimm.dao.entity.UserInfoEntity">
-         SELECT * FROM `exam`.`user_info` WHERE user_id=#{id}
+         SELECT * FROM  `user_info` WHERE user_id=#{id}
       </select>
 
 </mapper>

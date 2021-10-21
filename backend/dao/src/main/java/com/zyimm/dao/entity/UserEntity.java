@@ -7,13 +7,15 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
+
 /**
  * @author zyimm
  */
 @Data
 @JsonNaming(SnakeCaseStrategy.class)
-@TableName("user")
+@TableName(value = "user")
 @EqualsAndHashCode(callSuper = true)
+
 public class UserEntity  extends BaseEntity{
      /**
      * 指定主键名
@@ -46,9 +48,7 @@ public class UserEntity  extends BaseEntity{
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 
-    @TableLogic
-    private LocalDateTime deletedAt;
-
+    @TableField(exist = false )
     private UserInfoEntity info;
   
 

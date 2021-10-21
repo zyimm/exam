@@ -17,10 +17,10 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createdAt;
+    protected LocalDateTime createdAt;
 
-    private String createdUid;
+    protected String createdUid;
 
-    @TableLogic
-    private LocalDateTime deletedAt;
+    @TableLogic("null")
+    protected  LocalDateTime deletedAt;
 }

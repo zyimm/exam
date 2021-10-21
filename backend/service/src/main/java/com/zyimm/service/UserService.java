@@ -1,6 +1,8 @@
 package com.zyimm.service;
 
+import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
+import com.zyimm.dao.dto.UserDto;
 import com.zyimm.dao.entity.UserEntity;
 import java.util.Map;
 
@@ -13,9 +15,9 @@ public interface UserService {
      * 根据id获取会员信息
      * 
      * @param id
-     * @return UserEntity
+     * @return UserDto
      */
-    public UserEntity getUserInfoById(Long id);
+    public UserDto getUserInfoById(Long id);
 
 
     /**
@@ -24,7 +26,7 @@ public interface UserService {
      * @param  userRequest
      * @return Map<String, Object>
      */
-    public Map<String, Object> getUserList(UserRequest userRequest);
+    public Map<String, Object> getUserList(UserQueryRequest userRequest);
 
 
     /**
