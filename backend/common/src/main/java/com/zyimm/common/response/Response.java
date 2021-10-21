@@ -24,7 +24,7 @@ public class Response {
 
     public enum ResponseEnum{
         //成功
-        SUCCESS(200, "请求成功!"),
+        SUCCESS(0, "请求成功!"),
         //请求失败
         FAIL(400,"请求失败!");
 

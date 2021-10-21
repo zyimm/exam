@@ -70,9 +70,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> getUserList(UserQueryRequest userRequest) {
-        this.queryWrapper = new QueryWrapper<>();
+        
         this.queryWrapper = new QueryBuild<UserEntity, UserQueryRequest>().
-                    buildQuery(this.queryWrapper, this.condition(), userRequest);
+                    buildQuery(new QueryWrapper<>(), this.condition(), userRequest);
         IPage<UserEntity> page = new Page<>(userRequest.getPage(), userRequest.getLimit());
         this.queryWrapper.orderByDesc("id");
         IPage<UserEntity> listUser = userMapper.selectPage(page, this.queryWrapper);
