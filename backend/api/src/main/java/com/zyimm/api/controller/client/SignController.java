@@ -1,14 +1,15 @@
 package com.zyimm.api.controller.client;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.zyimm.common.request.SignRequest;
 import com.zyimm.common.response.Response;
+import com.zyimm.service.SignService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.dev33.satoken.stp.StpUtil;
+
 
 /**
  * 登录
@@ -18,6 +19,11 @@ import cn.dev33.satoken.stp.StpUtil;
 @RestController
 public class SignController {
 
+
+    @Autowired
+    private SignService signService;
+    
+
     /**
      * 登录
      * 
@@ -26,9 +32,7 @@ public class SignController {
      */
     @PostMapping("/user/signIn")
     public Response in(@RequestBody SignRequest signRequest) {
-        Map<String, Object> result = new HashMap<>(4);
-        StpUtil.login("10001");
-        result.put("token", StpUtil.getTokenInfo()); 
-        return Response.success(result);
+       
+        return Response.success(signService.in(signRequest));
     }
 }

@@ -118,6 +118,11 @@
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-dao-redis-jackson</artifactId>
             </dependency>
+
+            <dependency>
+                <groupId>at.favre.lib</groupId>
+                <artifactId>bcrypt</artifactId>
+            </dependency>
+            
 		</dependencies>
 </project>
-

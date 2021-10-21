@@ -14,7 +14,7 @@ import lombok.Data;
 public class Response {
 
     /**
-     *  code 200是正常，非200表示异常
+     * code 200是正常，非200表示异常
      */
     private Integer code;
 
@@ -22,11 +22,11 @@ public class Response {
 
     private Object result;
 
-    public enum ResponseEnum{
-        //成功
+    public enum ResponseEnum {
+        // 成功
         SUCCESS(0, "请求成功!"),
-        //请求失败
-        FAIL(400,"请求失败!");
+        // 请求失败
+        FAIL(400, "请求失败!");
 
         private final Integer responseCode;
 
@@ -44,7 +44,7 @@ public class Response {
             return responseMessage;
         }
 
-        public Integer getResponseCode(){
+        public Integer getResponseCode() {
             return responseCode;
         }
     }
@@ -74,7 +74,7 @@ public class Response {
     /**
      * 失败
      *
-     * @param code code
+     * @param code    code
      * @param message message
      * @return Response
      */
@@ -87,7 +87,7 @@ public class Response {
      * 失败
      *
      * @param message 提示语
-     * @param result 数据
+     * @param result  数据
      * @return Response
      */
     public static Response fail(String message, Object result) {
@@ -100,19 +100,18 @@ public class Response {
      *
      * @return
      */
-    public static JSONObject getDefaultObject(){
+    public static JSONObject getDefaultObject() {
         String jsonStr = "{}";
         return JSONUtil.parseObj(jsonStr);
     }
-
 
     /**
      * raw
      * 
      * 
-     * @param code 错误码
+     * @param code    错误码
      * @param message 消息
-     * @param result 数据
+     * @param result  数据
      * @return Response
      */
     public static Response raw(int code, String message, Object result) {
@@ -123,5 +122,5 @@ public class Response {
         response.setResult(result);
         return response;
     }
-    
+
 }
