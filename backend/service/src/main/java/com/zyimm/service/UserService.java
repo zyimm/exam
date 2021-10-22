@@ -1,5 +1,6 @@
 package com.zyimm.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
 import com.zyimm.dao.dto.UserDto;
@@ -9,42 +10,42 @@ import java.util.Map;
 /**
  * @author zyimm
  */
-public interface UserService {
+public interface UserService extends IService<UserEntity> {
 
      /**
      * 根据id获取会员信息
      * 
-     * @param id
+     * @param id 会员id
      * @return UserDto
      */
-    public UserDto getUserInfoById(Long id);
+     UserDto getUserInfoById(Long id);
 
 
     /**
      * 获取会员列表
      * 
-     * @param  userRequest
+     * @param  userRequest 请求参数
      * @return Map<String, Object>
      */
-    public Map<String, Object> getUserList(UserQueryRequest userRequest);
+    Map<String, Object> getUserList(UserQueryRequest userRequest);
 
 
     /**
      * 
      * 新增会员
      * 
-     * @param userEntity
-     * @return 
+     * @param userEntity 用户实体
+     * @return  String
      */
-    public String insertUser(UserEntity userEntity);
+    String insertUser(UserEntity userEntity);
 
     /**
      * 
      * 新增会员
      * 
-     * @param user
-     * @return 
+     * @param user 提交参数
+     * @return Map<String, Object>
      */
-    public Map<String, Object> insertUserForRequest(UserRequest user);
+    Map<String, Object> insertUserForRequest(UserRequest user);
     
 }
