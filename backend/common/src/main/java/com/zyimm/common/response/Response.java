@@ -98,7 +98,7 @@ public class Response {
     /**
      * 空对象返回
      *
-     * @return
+     * @return JSONObject
      */
     public static JSONObject getDefaultObject() {
         String jsonStr = "{}";
