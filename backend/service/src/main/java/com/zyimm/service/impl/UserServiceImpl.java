@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zyimm.common.exception.ExamException;
 import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
@@ -27,11 +28,8 @@ import java.util.Map;
  * @author zyimm
  */
 @Component
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
 
-    UserMapper userMapper;
-
-    @Autowired
     UserInfoMapper userInfoMapper;
 
     QueryWrapper<UserEntity> queryWrapper;
@@ -42,14 +40,14 @@ public class UserServiceImpl implements UserService {
 
     UserInfoEntity userInfo;
 
-    @Autowired
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
+    @Autowired(required = false)
+    public void setUserInfoMapper(UserInfoMapper userInfoMapper){
+        this.userInfoMapper = userInfoMapper;
     }
 
     @Override
     public UserDto getUserInfoById(Long id) {
-        return this.userBo.userInfo(userMapper.getUserInfoById(id), new UserDto());
+        return this.userBo.userInfo(baseMapper.getUserInfoById(id), new UserDto());
     }
 
     @Autowired
@@ -75,7 +73,8 @@ public class UserServiceImpl implements UserService {
                     buildQuery(new QueryWrapper<>(), this.condition(), userRequest);
         IPage<UserEntity> page = new Page<>(userRequest.getPage(), userRequest.getLimit());
         this.queryWrapper.orderByDesc("id");
-        IPage<UserEntity> listUser = userMapper.selectPage(page, this.queryWrapper);
+        IPage<UserEntity> listUser = baseMapper.selectPage(page, this.queryWrapper);
+        listUser.setTotal(baseMapper.selectCount(this.queryWrapper));
         return this.userBo.userList(listUser);
     }
 
@@ -93,7 +92,7 @@ public class UserServiceImpl implements UserService {
         Log.get().info(userRequest.getMain().toString());
         BeanUtils.copyProperties(userRequest.getMain(), this.user);
         BeanUtils.copyProperties(userRequest.getInfo(), this.userInfo);
-        if (!String.valueOf(this.userMapper.insert(this.user)).isEmpty()) {
+        if (!String.valueOf(baseMapper.insert(this.user)).isEmpty()) {
             this.userInfo.setUserId(this.user.getId());
             this.userInfoMapper.insert(this.userInfo);
             var result = new HashMap<String, Object>(1);

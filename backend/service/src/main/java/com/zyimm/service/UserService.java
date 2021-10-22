@@ -1,5 +1,6 @@
 package com.zyimm.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
 import com.zyimm.dao.dto.UserDto;
@@ -9,7 +10,7 @@ import java.util.Map;
 /**
  * @author zyimm
  */
-public interface UserService {
+public interface UserService extends IService<UserEntity> {
 
      /**
      * 根据id获取会员信息

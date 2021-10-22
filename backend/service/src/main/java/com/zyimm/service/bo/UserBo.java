@@ -1,6 +1,7 @@
 package com.zyimm.service.bo;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zyimm.common.utils.Page;
 import com.zyimm.dao.dto.UserDto;
 import com.zyimm.dao.dto.UserInfoDto;
 import com.zyimm.dao.dto.UserListDto;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class UserBo {
 
 
-    private UserListDto userListDto = new UserListDto();
+    private final UserListDto userListDto = new UserListDto();
 
 
     public Map<String, Object> userList(IPage<UserEntity> userList){
@@ -29,12 +30,8 @@ public class UserBo {
             BeanUtils.copyProperties(user, this.userListDto);
             userDtoList.add(this.userListDto);
         }
-        map.put("data", this.userListDto);
-        Map<String, Object> pageInfo  = new HashMap<>(4);
-        pageInfo.put("page", userList.getCurrent());
-        pageInfo.put("page_size", userList.getSize());
-        pageInfo.put("total", userList.getTotal());
-        map.put("page_info", pageInfo);
+        map.put("data", userDtoList.toArray());
+        map.put("page_info", Page.render(userList));
         return map;
     }
 

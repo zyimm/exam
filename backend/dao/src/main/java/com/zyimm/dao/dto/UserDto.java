@@ -34,6 +34,7 @@ public class UserDto  {
 
     private String lastLoginIp;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLoginTime;
 
     private String updatedUid;
@@ -45,6 +46,4 @@ public class UserDto  {
     private LocalDateTime createdAt;
 
     private UserInfoDto info;
-  
-
 }
