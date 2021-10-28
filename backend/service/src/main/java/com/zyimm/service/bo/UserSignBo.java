@@ -1,6 +1,5 @@
 package com.zyimm.service.bo;
 
-import org.springframework.stereotype.Component;
 
 import lombok.Builder;
 import lombok.Data;
