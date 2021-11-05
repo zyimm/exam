@@ -5,11 +5,13 @@ import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
 import com.zyimm.dao.dto.UserDto;
 import com.zyimm.dao.entity.UserEntity;
+
 import java.util.Map;
 
 /**
  * @author zyimm
  */
+
 public interface UserService extends IService<UserEntity> {
 
      /**

@@ -1,7 +1,5 @@
 package com.zyimm.api.controller.server;
 
-import java.util.Map;
-
 import com.zyimm.common.request.UserQueryRequest;
 import com.zyimm.common.request.UserRequest;
 import com.zyimm.common.response.Response;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @author zyimm

@@ -1,5 +1,6 @@
 package com.zyimm.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zyimm.common.exception.ExamException;
 import com.zyimm.common.request.SignRequest;
@@ -10,8 +11,6 @@ import com.zyimm.service.SignService;
 import com.zyimm.service.bo.UserSignBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import cn.dev33.satoken.stp.StpUtil;
 
 /**
  * @author zyimm
