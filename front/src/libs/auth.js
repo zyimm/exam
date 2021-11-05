@@ -42,9 +42,23 @@ class Auth {
 
     getUserInfo = () => {
         let info = Cookies.get(USER_KEY);
-        info = JSON.parse(info)
+        info = JSON.parse(info);
         Store.commit('setUserInfo', info);
         return info;
+    }
+
+    /**
+     * 初始化
+     *
+     * @param token
+     * @returns {Promise<string>}
+     */
+    initUserInfo = (token) => {
+        this.setToken(token);
+        return http.get(api.userInfo).then(r=>{
+            this.setUserInfo(JSON.stringify(r.result));
+            return '/';
+        })
     }
 
     /**

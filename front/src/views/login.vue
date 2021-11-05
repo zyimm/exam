@@ -4,14 +4,15 @@
         height: 100%;
         background-size: cover;
         background-position: center;
-        position:fixed;
+        position: fixed;
         background-image: url("http://img.zyimm.com/img/bg.6b2b7a05.jpg");
     }
-    .login-con{
-        
+
+    .login-con {
+
         width: 360px;
         margin: 10% auto;
-        
+
     }
 
     .login-tip {
@@ -28,7 +29,7 @@
                 <Form ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="handleSubmit">
                     <FormItem prop="userName">
                         <label>
-                            <Input v-model="form.email" placeholder="请输入用户名">
+                            <Input v-model="form.account" placeholder="请输入用户名">
                                     <span slot="prepend">
                                       <Icon :size="16" type="ios-person"></Icon>
                                     </span>
@@ -65,10 +66,10 @@
         data() {
             return {
                 form: {
-                    email: '799783009@qq.com',
+                    account: 'zyimm',
                     password: null
                 },
-                emailRules: [
+                accountRules: [
                     {
                         required: true, message: '账号不能为空', trigger: 'blur'
                     }
@@ -90,19 +91,21 @@
         },
         methods: {
             handleSubmit() {
-                this.$refs.loginForm.validate(async (valid) => {
+                this.$refs.loginForm.validate((valid) => {
                     if (valid) {
                         this.$Message.loading({
                             content: '正在登陆中...',
                             duration: 1
                         })
-                        await this.$http.post(this.$api.userLogin, this.form).then(response =>  {
-                           let result = response.result;
-                            if(result.access_token){
+                        this.$http.post(this.$api.userLogin, this.form).then(response => {
+                            console.log(response)
+                            let result = response.result;
+                            if (result.accessToken) {
                                 let user = this.$auth;
-                                user.setToken(result.access_token);
-                                user.setUserInfo(result.user);
-                                this.$router.push({path: '/'})
+                                user.initUserInfo(result.accessToken).then(result => {
+                                    this.$router.push({path: result})
+                                });
+
                             }
                         });
 

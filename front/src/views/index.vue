@@ -40,7 +40,7 @@
                             <div class="user-name">
                                 <Dropdown>
                                     <a href="javascript:void(0)">
-                                        {{this.$store.state.userInfo.name}}
+                                        {{this.$store.state.userInfo.user_name}}
                                         <Icon type="ios-arrow-down"></Icon>
                                     </a>
                                     <DropdownMenu slot="list">
@@ -56,7 +56,7 @@
 
                             </div>
                             <div class="user-avatar">
-                                <Avatar icon="ios-person" :src="this.$store.state.userInfo.avatar"
+                                <Avatar icon="ios-person" :src="this.$store.state.userInfo.user_avatar"
                                         size="large"/>
                             </div>
                             <div class="full-screen">

@@ -2,7 +2,7 @@
 let index = {
 
     baseUrl: {
-        dev: 'http://local.image.com',
+        dev: 'http://localhost:8080',
         pro: 'http://api.img.zyimm.com'
     },
     /**
