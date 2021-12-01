@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>dao</artifactId>
 	<packaging>jar</packaging>
-	
+
 	<dependencies>
 	   <dependency>
             <groupId>com.zyimm</groupId>

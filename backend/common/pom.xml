@@ -123,6 +123,7 @@
                 <groupId>at.favre.lib</groupId>
                 <artifactId>bcrypt</artifactId>
             </dependency>
-            
-		</dependencies>
+
+
+    </dependencies>
 </project>
