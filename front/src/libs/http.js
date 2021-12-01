@@ -66,14 +66,12 @@ const http = {
      * @returns {Promise<unknown>}
      */
     request: async function (url, method, data = {}, params = {}) {
-        //console.log('请求参数:',params, data);
-
         return await axios({
             url: url,
             method,
             data,
             params,
-            headers: {'Authorization': 'Bearer ' + this.getAccessToken()}
+            headers: {'Authorization-Zyimm-Token': 'Bearer ' + this.getAccessToken()}
         }).catch(e => {
             console.log(e);
             throw new Error('网络异常:' + e)
@@ -83,10 +81,10 @@ const http = {
         });
     },
     handleResponse(response) {
-        if (response.error_code !== 0) {
+        if (response.code !== 0) {
             this.isSuccess = false;
-            ViewUI.Message.error(response.error_msg);
-            if (response.error_code === 302) {
+            ViewUI.Message.error(response.message);
+            if (response.code === 302) {
                 Auth.removeCookie();
                 router.push({
                     path: 'login'
