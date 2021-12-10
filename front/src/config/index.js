@@ -1,5 +1,5 @@
 
-let index = {
+const index = {
 
     baseUrl: {
         dev: 'http://localhost:8080',
