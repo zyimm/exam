@@ -1,3 +1,1 @@
 # exam
-## backend
-## front
